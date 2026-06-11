@@ -1,0 +1,26 @@
+﻿@using Umbraco.Cms.Core.Models
+@using Umbraco.Cms.Core.Models.Blocks
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<BlockListItem>
+@* @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Banner>*@
+ @{
+    var content = Model.Content;
+
+    var title = content.Value("title");
+    var description = content.Value("description");
+    var buttonLink = content.Value<Link>("buttonLink");
+
+    // var title = Model.Title;
+    // var description = Model.Description;
+    // var buttonLink = Model.ButtonLink;
+}
+
+<div class="banner">
+    <div class="banner-content">
+        <h2>@title</h2>
+        @description
+        @if (buttonLink != null)
+        {
+            <a href="@buttonLink!.Url">@buttonLink.Name</a>
+        }
+    </div>
+</div>

@@ -1,0 +1,39 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<CtaBlock>
+
+@{
+    var title = Model.Title;
+    var description = Model.Description;
+    var button = Model.Button;
+    var backgroundColor = Model.BackgroundColor;
+}
+
+<section class="cta-block" style="background-color: @backgroundColor">
+    <div class="content m-auto col-md-6 py-5 text-center text-light mb-5">
+        <h2 class="mb-4 fw-bold">@title</h2>
+        @description
+        <a class="btn btn-outline-secondary align-center mt-4" href="@button?.Url">@button?.Name</a>
+    </div>
+</section>
+
+
+@* <style type="text/css">
+    .cta-block {
+    }
+
+    .cta-block[data-theme="primary-aqua"] {
+        background: #2fc9da;
+    }
+
+    .cta-block[data-theme="green"] {
+        background: green;
+    }
+
+    section[data-margin-bottom="0"] {
+        padding-bottom: 0;
+    }
+
+    section {
+        width: 100%;
+        display: block;
+    }
+</style> *@

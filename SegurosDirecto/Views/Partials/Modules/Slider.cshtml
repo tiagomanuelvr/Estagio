@@ -1,0 +1,160 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Slider>
+@{
+    var block = Model.Slides;
+    var id = 0;
+}
+
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+
+    <div class="carousel-inner mb-4">
+        @foreach (var b in block!)
+        {
+            var slide = b.Content as MainSliderItem;
+
+            var title = slide!.Title;
+            var description = slide.Description;
+            var backgroundImage = slide.BackgroundImage;
+
+            var radioBox = slide.RadioBox;
+            var submitButtonText = slide.SubmitButtonText;
+
+            var supportLinks = slide.SupportLinks;
+            var legal = slide.Legal;
+
+            var active = (id == 0) ? "active" : "";
+
+            <div class="carousel-item @(active)" style="background-image: url(@backgroundImage?.Url()); height: 45vh; background-position:center">
+
+                <div class="slider-text">
+                    <h2 class="fw-bold">@title</h2>
+                    @description
+                </div>
+                @* <form class="licenceHPForm" >
+
+                    @if (!string.IsNullOrEmpty(radioBox))
+                    {
+                        <div class="row">
+                            <input type="radio" name="vehicle" @(radioBox == "Automóvel" ? "checked" : "") />
+                            <span>Automóvel</span>
+
+                            <input type="radio" name="vehicle" @(radioBox == "Motociclo" ? "checked" : "") />
+                            <span>Motociclo</span>
+                        </div>
+                    }
+
+                    <div class="row" style="width:100px" >
+                        <input class="col-2" name="license1" type="text" maxlength="2" /> -
+                        <input class="col-2" name="license2" type="text" maxlength="2" /> -
+                        <input class="col-2" name="license3" type="text" maxlength="2" />
+
+                        <button class="col" type="submit">@submitButtonText</button>
+                    </div>
+                </form> *@
+                <div class="row-links">
+                    @{
+                        if (supportLinks!.Any())
+                        {
+                            <ul class="list-unstyled list-inline">
+                                @foreach (var link in supportLinks!)
+                                {
+                                    <li class="list-inline-item"><a class="link-secondary" href="@link.Url">@link.Name</a></li>
+                                }
+                            </ul>
+                        }
+                    }
+                </div>
+                <div class="row-note">
+                    <p>@legal</p>
+                </div>
+            </div>
+            id++;
+        }
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+
+
+@* @await Html.GetBlockListHtmlAsync(block)*@
+
+@* <div class="main-slider" >
+    @foreach (var b in block!)
+    {
+        var slide = b.Content as MainSliderItem;
+
+        var title = slide!.Title;
+        var description = slide.Description;
+        var backgroundImage = slide.BackgroundImage;
+        var radioBox = slide.RadioBox;
+        var submitButtonText = slide.SubmitButtonText;
+        var supportLinks = slide.SupportLinks;
+        var legal = slide.Legal;
+
+        <div class="slide-item" style="background-image: url(@backgroundImage?.Url()); height: 45vh; background-position:center">
+
+            <div class="slide-text">
+                <h2>@title</h2>
+                @description
+            </div>
+            @* <form class="licenceHPForm">
+
+                @if (!string.IsNullOrEmpty(radioBox))
+                {
+                    <div class="row">
+                        <input type="radio" name="vehicle" @(radioBox == "Automóvel" ? "checked" : "") />
+                        <span>Automóvel</span>
+
+                        <input type="radio" name="vehicle" @(radioBox == "Motociclo" ? "checked" : "") />
+                        <span>Motociclo</span>
+                    </div>
+                }
+
+                <div class="row" style="width:100px">
+                    <input class="col-2" name="license1" type="text" maxlength="2" /> -
+                    <input class="col-2" name="license2" type="text" maxlength="2" /> -
+                    <input class="col-2" name="license3" type="text" maxlength="2" />
+
+                    <button class="col" type="submit">@submitButtonText</button>
+                </div>
+            </form>
+            <div class="row-links">
+                @{
+                    if (supportLinks!.Any())
+                    {
+                        <ul>
+                            @foreach (var link in supportLinks!)
+                            {
+                                <li><a href="@link.Url" target="@link.Target">@link.Name</a></li>
+                            }
+                        </ul>
+                    }
+                }
+            </div>
+
+            <div class="row-note">
+                <p>@legal</p>
+            </div>
+        </div>
+        }
+</div>
+   
+<script>
+    $(document).ready(function(){
+        $(.main-slider).slick({
+            dots: true,
+            infinite: true
+        });
+    })
+</script> *@

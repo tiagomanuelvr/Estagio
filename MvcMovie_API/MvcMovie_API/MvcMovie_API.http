@@ -1,0 +1,7 @@
+﻿@MvcMovie_API_HostAddress = https://localhost:7240
+
+@searchString=string
+@movieGenre=string
+GET {{MvcMovie_API_HostAddress}}/api/moviesapi?searchString={{searchString}}&movieGenre={{movieGenre}}
+
+###

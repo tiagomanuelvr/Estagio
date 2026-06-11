@@ -1,0 +1,110 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\tiago.ramalho\\source\\repos\\MvcMovie_API\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{E5B83169-71AC-01EC-EFFC-BD66658CE2B9}|MvcMovie_API\\MvcMovie_API.csproj|c:\\users\\tiago.ramalho\\source\\repos\\mvcmovie_api\\mvcmovie_api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E5B83169-71AC-01EC-EFFC-BD66658CE2B9}|MvcMovie_API\\MvcMovie_API.csproj|solutionrelative:mvcmovie_api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E5B83169-71AC-01EC-EFFC-BD66658CE2B9}|MvcMovie_API\\MvcMovie_API.csproj|c:\\users\\tiago.ramalho\\source\\repos\\mvcmovie_api\\mvcmovie_api\\controllers\\moviesapi2controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E5B83169-71AC-01EC-EFFC-BD66658CE2B9}|MvcMovie_API\\MvcMovie_API.csproj|solutionrelative:mvcmovie_api\\controllers\\moviesapi2controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E5B83169-71AC-01EC-EFFC-BD66658CE2B9}|MvcMovie_API\\MvcMovie_API.csproj|c:\\users\\tiago.ramalho\\source\\repos\\mvcmovie_api\\mvcmovie_api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{E5B83169-71AC-01EC-EFFC-BD66658CE2B9}|MvcMovie_API\\MvcMovie_API.csproj|solutionrelative:mvcmovie_api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E5B83169-71AC-01EC-EFFC-BD66658CE2B9}|MvcMovie_API\\MvcMovie_API.csproj|c:\\users\\tiago.ramalho\\source\\repos\\mvcmovie_api\\mvcmovie_api\\repositories\\repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E5B83169-71AC-01EC-EFFC-BD66658CE2B9}|MvcMovie_API\\MvcMovie_API.csproj|solutionrelative:mvcmovie_api\\repositories\\repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 7,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MoviesApi2Controller.cs",
+              "DocumentMoniker": "C:\\Users\\tiago.ramalho\\source\\repos\\MvcMovie_API\\MvcMovie_API\\Controllers\\MoviesApi2Controller.cs",
+              "RelativeDocumentMoniker": "MvcMovie_API\\Controllers\\MoviesApi2Controller.cs",
+              "ToolTip": "C:\\Users\\tiago.ramalho\\source\\repos\\MvcMovie_API\\MvcMovie_API\\Controllers\\MoviesApi2Controller.cs",
+              "RelativeToolTip": "MvcMovie_API\\Controllers\\MoviesApi2Controller.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAYwBUAAABAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-09T13:02:21.36Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:132:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:131:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\tiago.ramalho\\source\\repos\\MvcMovie_API\\MvcMovie_API\\Program.cs",
+              "RelativeDocumentMoniker": "MvcMovie_API\\Program.cs",
+              "ToolTip": "C:\\Users\\tiago.ramalho\\source\\repos\\MvcMovie_API\\MvcMovie_API\\Program.cs",
+              "RelativeToolTip": "MvcMovie_API\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAABHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-15T16:23:39.025Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\tiago.ramalho\\source\\repos\\MvcMovie_API\\MvcMovie_API\\appsettings.json",
+              "RelativeDocumentMoniker": "MvcMovie_API\\appsettings.json",
+              "ToolTip": "C:\\Users\\tiago.ramalho\\source\\repos\\MvcMovie_API\\MvcMovie_API\\appsettings.json",
+              "RelativeToolTip": "MvcMovie_API\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-04-17T10:28:30.585Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Repository.cs",
+              "DocumentMoniker": "C:\\Users\\tiago.ramalho\\source\\repos\\MvcMovie_API\\MvcMovie_API\\Repositories\\Repository.cs",
+              "RelativeDocumentMoniker": "MvcMovie_API\\Repositories\\Repository.cs",
+              "ToolTip": "C:\\Users\\tiago.ramalho\\source\\repos\\MvcMovie_API\\MvcMovie_API\\Repositories\\Repository.cs",
+              "RelativeToolTip": "MvcMovie_API\\Repositories\\Repository.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAxwAkAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-09T16:52:42.649Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels
+@using Serilog
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+    Layout = "master.cshtml";
+
+    IEnumerable<IPublishedContent> modules = Enumerable.Empty<IPublishedContent>();
+    if (Model != null)
+    {
+        if (Model.IsDocumentType(GenericPage.ModelTypeAlias) || Model.IsDocumentType(Homepage.ModelTypeAlias) || Model.IsDocumentType(Header.ModelTypeAlias))
+        {
+            IEnumerable<IPublishedContent> folders = Model.Children().Where(X => X.IsDocumentType(FolderModules.ModelTypeAlias));
+
+            foreach (var folder in folders)
+            {
+                if (folder.Children().Any())
+                {
+                    modules = modules.Union(folder.Children());
+                }
+            }
+        }
+
+        if (modules.Any())
+        {
+            foreach (var module in modules)
+            {
+                var alias = module.ContentType.Alias;
+                try
+                {
+                    @await Html.PartialAsync($"Modules/{module.ContentType.Alias}", module);
+                }
+                catch (Exception e)
+                {
+                    Log.Logger.Error("Erro no módulo");
+                }
+            }
+        }
+    }
+}

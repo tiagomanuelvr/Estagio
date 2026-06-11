@@ -1,0 +1,16 @@
+@TodoApi_HostAddress = https://localhost:7059
+
+POST {{TodoApi_HostAddress}}/api/todoitems
+Content-Type: application/json
+
+{
+  "Name": "walk dog",
+  "IsComplete": true
+}
+
+###
+
+@id=0
+GET {{TodoApi_HostAddress}}/api/todoitems/{{id}}
+
+###

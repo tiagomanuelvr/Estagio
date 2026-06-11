@@ -1,0 +1,41 @@
+﻿@using Umbraco.Cms.Core.Models
+@using Umbraco.Cms.Core.Models.Blocks
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Header>
+@{
+    var links = Model.Url;
+    var pageUrl = UmbracoContext.PublishedRequest.PublishedContent.Url();
+
+    // var pageUrl = (string?)ViewData["pageUrl"];
+    // var links = Umbraco.ContentAtRoot().DescendantsOrSelfOfType(GenericPage.ModelTypeAlias).Where(x => x.Value<Boolean>("showInMenu") == true);
+}
+
+<header>
+    <nav class="navbar navbar-expand-md bg-light">
+        <div class="container center-align">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mx-auto">
+                    @foreach (var link in links!)
+                    {
+                        var classActive = pageUrl == link.Url ? "active" : "";
+
+                        <li class="nav-item">
+                            <a class="nav-link @(classActive)" href="@link.Url">@link.Name</a>
+                        </li>
+                    }
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+</header>
+
+@* @if (links.ToList().Count() == 0)
+{
+    <h2>Empty</h2>
+} *@

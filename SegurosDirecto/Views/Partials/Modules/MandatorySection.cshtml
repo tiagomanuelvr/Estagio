@@ -1,0 +1,50 @@
+﻿@* @using System.IO*@
+@using FilePath = System.IO.Path
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<MandatorySection>
+@{
+    var totalItems = Model.MandatoryItem!.Count();
+
+    var title = Model.Title;
+    var description = Model.Description;
+    var block = Model.MandatoryItem;
+    var backgroundColor = Model.BackgroundColor;
+}
+
+<section class="mandatory-@totalItems" style="background-color: @backgroundColor">
+    <div class="col-md-10 m-auto text-center py-5">
+        <h2 class="mb-4 fw-semibold">@title</h2>
+        @description
+        <div class="">
+            <div class="feature row">
+                @foreach (var b in block!)
+                {
+                    var item = b.Content as MandatoryItem;
+
+                    var image = item?.Image;
+                    
+                    var itemTitle = item?.Title;
+                    var itemDescription = item?.Description;
+                    var link = item?.Link;
+
+                    var imgSize = totalItems == 2 ? "mandatory2" : "mandatory3";
+@*                     var ext = Path.GetExtension(image!.MediaUrl()); *@
+                    var extension = System.IO.Path.GetExtension(image!.MediaUrl());
+@*                  var extension = FilePath.GetExtension(image!.MediaUrl());*@
+
+                    var style = extension.Equals(".svg") ? "width: 120px; height:70px" : "";
+                    // <h1>@ext</h1>
+                    
+                    <div class="col-sm-10 col-md-7 col-lg-4 px-4 mx-auto py-3">
+                        <div class="">
+                            <div><img src="@image?.GetCropUrl(imgSize)" style="@style" /></div> 
+                        
+                            <h2 class="pb-4" style="font-size:24px">@itemTitle</h2>
+                            <div class="mt-4 flex-grow-1">@itemDescription</div>
+                            <a class="text-decoration-none mt-auto" href="@link?.Url">@link?.Name</a>
+                        </div>   
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>

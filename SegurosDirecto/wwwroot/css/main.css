@@ -1,0 +1,25 @@
+﻿.title {
+    color: red;
+}
+
+title {
+    color: red;
+}
+
+#title {
+    color: red;
+}
+
+.title2 {
+    color: green;
+}
+
+/*.carousel-indicators [data-bs-target]{
+width: 100px !important;
+height: 100px !important;
+}*/
+
+.reviews-button {
+    width: 10px !important;
+    height: 10px !important;
+}

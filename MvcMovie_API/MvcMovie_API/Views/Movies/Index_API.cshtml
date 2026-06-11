@@ -1,0 +1,53 @@
+﻿@model MvcMovie.Models.MovieGenreViewModel
+
+@{
+    ViewData["Title"] = "Index_API";
+}
+
+<h1>Index_API</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<form asp-controller="Movies" asp-action="Index" method="get">
+    <p>
+        @* <select asp-items="ViewBag.Genres">
+            <option value="">All</option>
+        </select>  *@
+
+        @Html.DropDownList("Genre", ViewBag.Genres as SelectList, "All")
+         
+        <label>Title: <input type="text" id="inputText"/></label>
+        <input type="button" id="filterButton" value="Filter" />
+    </p>
+</form> 
+
+<div id="searchString"></div>
+
+<table class="table" id="index_API">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>ReleaseDate</th>
+            <th>Genre</th>
+            <th>Price</th>
+            <th>Rating</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    @* <tbody>
+       
+    </tbody> *@
+</table>
+
+<table class="cloneTr" style="display:none;">
+    <tr>
+        <td class="title"></td>
+    </tr>
+</table>
+
+@section Scripts {
+    <script src="~/js/index_ApiMovies.js"></script>
+    <script src="https://cdn.datatables.net/v/dt/dt-2.3.7/datatables.min.js" integrity="sha384-aQ8I1X2x8U0AR8D7C4Ah0OvZlwMslQdN5YDAQBA56jXrrhcECijs/i7H+5DDrlV1" crossorigin="anonymous"></script>
+}

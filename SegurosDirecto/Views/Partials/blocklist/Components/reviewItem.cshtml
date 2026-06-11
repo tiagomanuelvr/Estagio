@@ -1,0 +1,52 @@
+﻿@using Umbraco.Cms.Core.Models
+@using Umbraco.Cms.Core.Models.Blocks
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<BlockListItem>
+@{
+    var content = Model.Content;
+
+    var stars = content.Value("stars");
+    var publishDate = content.Value<DateTime>("publishDate").ToString("dd/MM/yyyy");
+    var comment = content.Value("comment");
+    var clientName = content.Value("clientName");
+    var purchaseDate = content.Value<DateTime>("purchaseDate").ToString("dd/MM/yyyy");
+
+    // var index = (int?)ViewData["index"];
+}
+
+@* <div class="review-container">
+    <div class="stars">
+
+    </div>
+    <p>Publicado a @publishDate</p>
+    <p>@comment</p>
+    <p><strong>@clientName</strong> pela experiência de compra a @purchaseDate</p>
+</div> *@
+
+<div id="carouselExampleIndicators" class="carousel slide">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
+
+    </div>
+    <div class="carousel-inner">
+        @{
+            // var active = (index == 0) ? "active" : "";
+        }
+        <div class="carousel-item">
+            <p>Publicado a @publishDate</p>
+            <p>@comment</p>
+            <p><strong>@clientName</strong> pela experiência de compra a @purchaseDate</p>
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>

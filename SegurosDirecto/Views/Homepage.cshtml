@@ -1,0 +1,28 @@
+﻿@* @using Umbraco.Cms.Core.Models.Blocks
+@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.Homepage>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+	Layout = "master.cshtml";
+	var blocks = Model.Value<BlockListModel>("pageContent");
+}
+
+@if(blocks != null)
+{
+	@await Html.GetBlockListHtmlAsync(blocks)
+} *@
+
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+	Layout = "master.cshtml";
+
+	var modulesFolder = Model.Descendants().FirstOrDefault(x => x.ContentType.Alias == "folderModules" && x.Name == "Modules");
+
+	if(modulesFolder is not null)
+	{
+		foreach(var module in modulesFolder.Children().Where(x => x.IsVisible()))
+		{
+			@await Html.PartialAsync($"Modules/{module.ContentType.Alias}", module)
+		}
+	}
+}

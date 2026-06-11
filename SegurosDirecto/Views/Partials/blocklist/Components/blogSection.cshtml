@@ -1,0 +1,26 @@
+﻿@using Umbraco.Cms.Core.Models
+@using Umbraco.Cms.Core.Models.Blocks
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<BlockListItem>
+@{
+    var content = Model.Content;
+
+    var title = content.Value("title");
+    var blogArticleItems = content.Value<BlockListModel>("blogArticleItems");
+
+}
+
+<div class="blogSection">
+    <div class="container">
+        <h2>@title</h2>
+        
+        <div class="blog-item">
+            @if (blogArticleItems != null)
+            {
+                foreach (var blogArticleItem in blogArticleItems)
+                {
+                    @await Html.PartialAsync("blockList/Components/blogArticleItem", blogArticleItem)
+                }
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,166 @@
+{
+  "name":  "My package",
+  "extensions": [
+    {
+      "type": "backofficeEntryPoint",
+      "alias": "My.EntryPoint",
+      "js": "/App_Plugins/NewSection/index.js"
+    },
+    {
+      "type": "section",
+      "alias": "MySection",
+      "name": "My Section",
+      "meta": {
+        "label": "My Section",
+        "pathname": "my-section"
+      }
+    },
+    {
+      "type": "menu",
+      "alias": "My.Menu",
+      "name": "My Menu"
+    },
+    {
+      "type": "sectionSidebarApp",
+      "kind": "menu",
+      "alias": "My.SectionSidebarApp.MyMenu",
+      "name": "My Menu Section Sidebar App",
+      "meta": {
+        "label": "My Sidebar Menu",
+        "menu": "My.Menu"
+      },
+      "conditions": [
+        {
+          "alias": "Umb.Condition.SectionAlias",
+          "match": "MySection"
+        }
+      ]
+    },
+    {
+      "type": "repository",
+      "alias": "My.Tree.Repository",
+      "name": "My Tree Repository",
+      "api": "/App_Plugins/NewSection/my-tree.repository.js"
+    },
+    {
+      "type": "tree",
+      "kind": "default",
+      "alias": "My.Tree",
+      "name": "My Tree",
+      "meta": {
+        "repositoryAlias": "My.Tree.Repository"
+      }
+    },
+    {
+      "type": "treeItem",
+      "kind": "default",
+      "alias": "My.TreeItem",
+      "forEntityTypes": [ "my-tree-root", "my-tree-item", "my-tree-item2" ]
+    },
+    {
+      "type": "menuItem",
+      "kind": "tree",
+      "alias": "My.MenuItem.Tree",
+      "name": "My Tree Menu Item",
+      "weight": 100,
+      "meta": {
+        "label": "My Tree",
+        "icon": "icon-folder",
+        "entityType": "my-tree-root",
+        "menus": [ "My.Menu" ],
+        "treeAlias": "My.Tree",
+        "hideTreeRoot": false
+      }
+    },
+    {
+      "type": "workspace",
+      "kind": "default",
+      "alias": "My.Custom.Workspace",
+      "name": "My Custom Workspace",
+      "meta": {
+        "entityType": "my-tree-item"
+      }
+    },
+    {
+      "type": "workspaceView",
+      "name": "Pedidos",
+      "alias": "example.workspaceView",
+      "element": "/App_Plugins/NewSection/workspace-view.js",
+      "weight": 900,
+      "meta": {
+        "label": "Pedidos",
+        "pathname": "pedidos",
+        "icon": "icon-lab"
+      },
+      "conditions": [
+        {
+          "alias": "Umb.Condition.WorkspaceAlias",
+          "match": "My.Custom.Workspace"
+        }
+      ]
+    },
+    {
+      "type": "workspaceView",
+      "name": "Export",
+      "alias": "example.workspaceView2",
+      "element": "/App_Plugins/NewSection/workspace-view2.js",
+      "weight": 900,
+      "meta": {
+        "label": "Export",
+        "pathname": "Export",
+        "icon": "icon-lab"
+      },
+      "conditions": [
+        {
+          "alias": "Umb.Condition.WorkspaceAlias",
+          "match": "My.Custom.Workspace"
+        }
+      ]
+    },
+    {
+      "type": "workspace",
+      "kind": "default",
+      "alias": "Workspace.Table",
+      "name": "My Custom Workspace",
+      "meta": {
+        "entityType": "my-tree-item2"
+      }
+    },
+    {
+      "type": "workspaceView",
+      "name": "Table",
+      "alias": "example.workspaceViewItem2",
+      "element": "/App_Plugins/NewSection/workspace-uuiTable.js",
+      "weight": 900,
+      "meta": {
+        "label": "Table",
+        "pathname": "Table",
+        "icon": "icon-lab"
+      },
+      "conditions": [
+        {
+          "alias": "Umb.Condition.WorkspaceAlias",
+          "match": "Workspace.Table"
+        }
+      ]
+    },
+    {
+      "type": "entityAction",
+      "kind": "create",
+      "alias": "My.Custom.CreateAction",
+      "name": "My Custom Create",
+      "forEntityTypes": [ "my-tree-root" ],
+      "meta": {
+        "icon": "icon-add",
+        "label": "Create",
+        "documentTypeAlias": [ "genericPage" ]
+      },
+      "conditions": [
+        {
+          "alias": "Umb.Condition.SectionAlias",
+          "match": "MySection"
+        }
+      ]
+    }
+  ]
+}

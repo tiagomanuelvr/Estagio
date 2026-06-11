@@ -1,0 +1,33 @@
+﻿@using Umbraco.Cms.Core.Models
+@using Umbraco.Cms.Core.Models.Blocks
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<BlockListItem>
+@{
+    var content = Model.Content;
+
+    var title = content.Value("title");
+    var description = content.Value("description");
+    var averageRating = content.Value("averageRating");
+    var reviewsList = content.Value<BlockListModel>("reviewsList");
+    var bannerLogo = content.Value<MediaWithCrops>("bannerLogo");
+}
+
+<div class="reviewsSection">
+    <div class="container">
+        <h2>@title</h2>
+        @description
+
+        <div class="reviews-global">
+            <p>@averageRating</p>
+
+        </div>
+        <div class="reviews-item">
+            @if (reviewsList != null)
+            {
+                foreach (var review in reviewsList)
+                {
+                    @await Html.PartialAsync("blockList/Components/reviewItem", review)
+                }
+            }
+        </div>
+    </div>
+</div>

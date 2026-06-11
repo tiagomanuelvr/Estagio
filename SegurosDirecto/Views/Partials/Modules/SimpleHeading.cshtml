@@ -1,0 +1,13 @@
+﻿@using Umbraco.Cms.Core.Models
+@using Umbraco.Cms.Core.Models.Blocks
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<SimpleHeading>
+
+@{
+    var title = Model.Title;
+    var description = Model.Description;
+}
+
+<section class="simpleHeading">
+    <h1>@title</h1>
+    <p>@description</p>
+</section>

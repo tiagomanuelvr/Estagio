@@ -1,0 +1,32 @@
+﻿@using Umbraco.Cms.Core.Models
+@using Umbraco.Cms.Core.Models.Blocks
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<BlockListItem>
+@{
+    var content = (CardItem)Model.Content;
+
+    var a = content.CardTitle;
+
+    var title = content.Value("title");
+    var description = content.Value("description");
+    var cards = content.Value<IEnumerable<IPublishedContent>>("cardsListBlock");
+    var link = content.Value<Link>("link");
+}
+
+<div class="cardList">
+    <div class="container">
+        <h2>@title</h2>
+        @description
+
+        @if (cards != null)
+        {
+            foreach(var card in cards){
+                @await Html.PartialAsync("blockList/Components/cardItem", card)
+            }
+        }
+
+        @if (link != null)
+        {
+            <a href="@link.Url">@link.Name</a>
+        }
+    </div>
+</div>

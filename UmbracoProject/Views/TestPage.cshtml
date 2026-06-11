@@ -1,0 +1,15 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.TestPage>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+	Layout = "master.cshtml";
+}
+
+<h2>Title</h2>
+
+@Model.Value("colorPicker")
+@Model.Value("stringLabel")
+
+<p>@Model.Value("bodyText")</p>
+
+@Model.Value("dataPicker")

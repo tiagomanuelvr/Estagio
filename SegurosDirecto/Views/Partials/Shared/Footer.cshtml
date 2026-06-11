@@ -1,0 +1,54 @@
+﻿@using Umbraco.Cms.Core.Models
+@using Umbraco.Cms.Core.Models.Blocks
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Footer>
+
+@{
+    var logo = Model?.Logo;
+    var description = Model?.Description;
+    var badges = Model?.Badges;
+    var blocks = Model?.Links;
+    var backgroundColor = Model?.BackgroundColor;
+
+    var itemIndex = 0;
+}
+
+<footer>
+    <div class="container">
+        <div class="row m-auto" style="background-color: @backgroundColor">
+            @*<h2>Footer</h2>*@
+            <div class="leftSide col-lg-5 p-4 text-center my-auto">
+                <img src="@logo?.Url()" class="w-75" />
+                <div class="my-4">@description</div>
+                @foreach (var badge in badges!)
+                {
+                    <img class="w-25 h-10" src="@badge.MediaUrl()" alt="@badge.Name" />
+                }
+            </div>
+
+            <div class="links col-lg-7 d-flex flex-wrap mx-auto my-4 gap-3">
+                @foreach (var block in blocks!)
+                {
+                    var content = block.Content; 
+                    var title = content.Value("title");
+
+                    @*<p>@title</p>*@
+                    <ul class="list-unstyled" style="max-width: 160px">
+                        @foreach (var link in content.Value<IEnumerable<Link>>("links")!)
+                        {
+                            var font = "";
+                            if (itemIndex == 0)
+                            {
+                                font = "fw-bold";
+                            }
+                            <li>
+                                <a class="text-decoration-none text-black-50 @font" href="@(link.Url)">@link.Name</a>
+                            </li>
+                            itemIndex++;
+                        }
+                    </ul>
+                    itemIndex = 0;
+                }
+            </div>
+        </div>
+    </div>
+</footer>

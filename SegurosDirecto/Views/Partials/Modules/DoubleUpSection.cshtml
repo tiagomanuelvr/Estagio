@@ -1,0 +1,48 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<DoubleUpSection>
+@{
+    var mainTitle = Model.MainTitle;
+    var smallTitle = Model.SmallTitle;
+    var description = Model.Description;
+    bool invertLayout = Model.InvertLayout;
+    var button = Model.Button;
+    var backgroundColor = Model.BackgroundColor;
+
+    var rte = Model.Rte;
+
+    var block = Model.Media;
+
+    string order = invertLayout ? "order-first" : "";
+}
+
+<section class="section-doubleUp" style="background-color: @backgroundColor">
+    <div class="row py-4">
+        <div class="wall-of-text col-md-6">
+            <div>
+                <h2 class="fw-bold mb-3">@mainTitle</h2>
+                <h2 class="fw-semibold"><small>@smallTitle</small></h2>
+                @description
+                @if (button is not null)
+                {
+                    <a class="btn btn-secondary mt-4" href="@button!.Url">@button.Name</a>
+                }
+
+                @rte
+            </div>
+        </div>
+        <div class="col-md-6 @order">
+            @foreach (var b in block!)
+            {
+                if (b.Content is ImageElement imageElement)
+                {
+                    var image = imageElement.Image;
+                    <img class="w-100" src="@image?.MediaUrl()" />
+                }
+                if (b.Content is VideoElement videoElement)
+                {
+                    var image = videoElement.Thumbnail;
+                    <img class="w-100" src="@image?.MediaUrl()" />
+                }
+            }
+        </div>
+    </div>
+</section>

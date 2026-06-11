@@ -1,0 +1,42 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<BlogArticles>
+@{
+    var title = Model.Title;
+    var description = Model.Description;
+
+    var block = Model.ArticleItems;
+}
+
+<section class="BlogArticles">
+    <div class="text-center py-5">
+        <h2 class="fw-bold">@title</h2>
+        @description
+    </div>
+    <div class="d-flex flex-wrap">
+        @foreach (var card in block!)
+        {
+            @*         var item = card.Content as CardItem;
+ *@        var item = card.Content;
+            @await Html.PartialAsync("blockList/Components/cardItem", item)
+        }
+    </div>
+</section>
+
+@* <div class="containder">
+    @for (int i = 0; i < 12; i++)
+    {
+        if (i % 3 == 0)
+        {
+            @Html.Raw("<div class=\"row\">")
+        }
+
+        <div class="col-12 col-sm-6 col-md-4">@("item" + i)</div>
+
+        @if (i % 3 == 2)
+        {
+            @Html.Raw("</div>")
+        }
+
+    }
+</div> *@
+
+@* @Html.Raw() *@

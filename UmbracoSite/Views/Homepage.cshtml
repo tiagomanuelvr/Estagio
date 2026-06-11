@@ -1,0 +1,269 @@
+﻿@using Umbraco.Cms.Core.Models
+@using Umbraco.Cms.Core.Models.Blocks
+@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.Homepage>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+	Layout = "master.cshtml";
+}
+
+<div class="container">
+    <div class="slider">
+        @{
+            var blocks = Model.Value<IEnumerable<BlockListItem>>("blockList");
+            foreach (var block in blocks!)
+            {
+                var content = block.Content;
+                var image = content.Value<MediaWithCrops>("imagePicker");
+                var vehicleValue = content.Value<String>("radioBox");
+                var links = content.Value<IEnumerable<Link>>("urlPicker");
+
+                <div class="slide-item" style="background-image: url(@image!.MediaUrl());">
+                    <h2>@content.Value("title")</h2>
+                    <small>@content.Value("Description")</small>
+
+                    <form class="licenceHPForm">
+
+                        @if (!string.IsNullOrEmpty(vehicleValue))
+                        {
+                            <div class="row">
+                                <input type="radio" name="vehicle" @(vehicleValue == "Automóvel" ? "checked" : "") />
+                                <span>Automóvel</span>
+
+                                <input type="radio" name="vehicle" @(vehicleValue == "Motociclo" ? "checked" : "") />
+                                <span>Motociclo</span>
+                            </div>
+                        }
+
+                        <div class="row">
+                            <input name="license1" type="text" maxlength="2" /> -
+                            <input name="license2" type="text" maxlength="2" /> -
+                            <input name="license3" type="text" maxlength="2" />
+
+                            <button type="submit">@content.Value("submitButtonText")</button>
+                        </div>
+                    </form>
+
+                    <div class="row-links">
+                        @{
+                            if (links.Any())
+                            {
+                                <ul>
+                                    @foreach (var link in links)
+                                    {
+                                        <li><a href="@link.Url" target="@link.Target">@link.Name</a></li>
+                                    }
+                                </ul>
+                            }
+                         } 
+                    </div>
+
+                    <div class="row-note">
+                        <p>@content.Value("info")</p>
+                    </div>
+
+                </div>
+                
+            }
+        }
+	</div>
+
+    <hr>
+
+    <section class="doubleUp">
+        <div class="wrapper">
+            @{
+                var blockDoubleUp = Model.Value<IEnumerable<BlockListItem>>("doubleUp")?.ToList();
+
+                for (int i = 0; i < blockDoubleUp!.Count; i++)
+                {
+                    var content = blockDoubleUp[i].Content;
+                    var link = content.Value<IEnumerable<Link>>("info")?.FirstOrDefault();
+                    var image = content.Value<MediaWithCrops>("imagePicker");
+                    
+                    <div class="slide-item@i">
+                        
+                        <h2>@content.Value("title")</h2>
+                        <p>@content.Value("text")</p>
+
+                        @if (i % 2 == 0)
+                        {
+                            <h2>@content.Value("smallTitle")</h2>
+                            <div class="slide-item-img">
+                                <img src="@image.Url()" alt="@image.Name" />
+                            </div>
+
+                            
+                        } else
+                        {
+                            
+                        }
+
+                        @if (link != null)
+                        {
+                            <a href="@link.Url">@link.Name</a>
+                        }
+
+                    </div>
+
+                }
+            }
+        </div>
+    </section>
+
+    <hr>
+
+    <section class="ctablock">
+        <div class="wrapper">
+            
+            @{
+                var blockService = Model.Value<IEnumerable<BlockListItem>>("serviceBlock");
+                foreach (var blockS in blockService!)
+                {
+                    var mainContent = blockS.Content;
+                    var title = mainContent.Value("title");
+                    var text = mainContent.Value("text");
+                    var link = mainContent.Value<IEnumerable<Link>>("info")?.FirstOrDefault();
+
+                    var subItems = mainContent.Value<IEnumerable<BlockListItem>>("services");
+
+                    <div class="content">
+                        <h2>@title</h2>
+                        <p>@text</p>
+
+                        @if (subItems != null && subItems.Any())
+                        {
+                            foreach (var subItem in subItems)
+                            {
+                                var contentService = subItem.Content;
+
+                                var textService = contentService.Value("text");
+                                var imageService = contentService.Value<MediaWithCrops>("image");
+                                var linkService = contentService.Value<IEnumerable<Link>>("link")?.FirstOrDefault();
+
+                                <div class="subBlock-item">
+
+                                    <img src="@imageService!.Url()" alt="@imageService!.Name" style="max-width:200px;"/>
+                                    <p>@textService</p>
+                                    <a href="@linkService!.Url">@linkService.Name</a>
+                                </div>
+                            }
+                        } else
+                        {
+                            <h1>Empty</h1>   
+                        }
+                    </div>
+                }
+
+            }
+           
+        </div>
+    </section>
+
+    <hr>
+
+    <div class="block2">
+        @{
+            var block2 = Model.Value<IEnumerable<BlockListItem>>("serviceBlock2");
+            foreach (var block in block2!)
+            {
+                var content = block.Content;
+
+                var text = content.Value("text");
+                var link = content.Value<IEnumerable<Link>>("link")?.FirstOrDefault();
+                
+                <div class="block2-item">
+                    @text
+                    <a href="@link!.Url">@link.Name</a>
+                </div>
+            }
+        }
+    </div>
+
+    <hr>
+
+    <div class="">
+        <h1>Blog Article</h1>
+
+        @{
+            var blogArticle = Model.Value<IEnumerable<BlockListItem>>("blogArticle");
+
+            foreach (var article in blogArticle)
+            {
+                var articleContent = article.Content;
+
+                var articleTitle = articleContent.Value("title");
+                var blogArticleBlock = articleContent.Value<IEnumerable<BlockListItem>>("blogArticleBlock");
+
+                foreach (var articleBlock in blogArticleBlock)
+                {
+                    var content = articleBlock.Content;
+
+                    var image = content.Value<MediaWithCrops>("image");
+                    var category = content.Value<IEnumerable<Link>>("category").FirstOrDefault();
+                    var text = content.Value("text");
+                    var date = content.Value("date");
+                    var link = content.Value<IEnumerable<Link>>("category").FirstOrDefault();
+
+                    <div class="cardItems">
+                        <div class="cardItem-img">
+                            <img src="@image!.Url()" alt="@image!.Name" style="max-width:200px;" />
+                        </div>
+                        <div cardItem-text>
+                            <a href="@category!.Url">@category.Name</a>
+                            @text
+                            <span>@date</span>
+                            <a href="@link!.Url">@link.Name</a>
+                        </div>
+                    </div>
+                }
+            }
+        }
+
+    </div>
+
+    <hr>
+
+    <div class="block3">
+        @{
+            var block3 = Model.Value<IEnumerable<BlockListItem>>("serviceBlock3");
+            foreach (var block in block3!)
+            {
+                var content = block.Content;
+
+                var text = content.Value("text");
+                var link = content.Value<IEnumerable<Link>>("link")?.FirstOrDefault();
+
+                <div class="block3-item">
+                    @text
+                    <a href="@link!.Url">@link.Name</a>
+                </div>
+            }
+        }
+    </div>
+
+    <hr>
+
+    <div class="ImageAndText">
+        @{
+            var ImageAndText = Model.Value<IEnumerable<BlockListItem>>("ImageAndText");
+            foreach (var block in ImageAndText!)
+            {
+                var content = block.Content;
+
+                var title = content.Value("title");
+                var text = content.Value("text");
+                var image = content.Value<MediaWithCrops>("image");
+
+                <div class="ImageAndText-item">
+                    <h1>@title</h1>
+                    @text
+                </div>
+                <div class="ImageAndText-item">   
+                    <img src="@image!.Url()" alt="@image!.Name" style="max-width:200px;" />
+                </div>
+            }
+        }
+    </div>
+
+</div>

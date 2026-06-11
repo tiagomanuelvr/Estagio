@@ -1,0 +1,63 @@
+﻿@using Umbraco.Cms.Core.Models
+@using Umbraco.Cms.Core.Models.Blocks
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<BlockListItem>
+@{
+    var content = Model.Content;
+
+    var title = content.Value("title");
+    var description = content.Value("description");
+    var backgroundImage = content.Value<MediaWithCrops>("backgroundImage");
+
+    var radioBox = content.Value<String>("radioBox");
+    var submitButtonText = content.Value("submitButtonText");
+
+    var supportLinks = content.Value<IEnumerable<Link>>("supportLinks");
+    var legal = content.Value("legal");
+}
+
+<div class="main-slider" style="background-image: url(@backgroundImage?.Url()); height: 45vh; background-position:center">
+    <div class="slide-item">
+        <div class="slider-text">
+            <h2>@title</h2>
+            @description
+        </div>
+        <form class="licenceHPForm">
+
+            @if (!string.IsNullOrEmpty(radioBox))
+            {
+                <div class="row">
+                    <input type="radio" name="vehicle" @(radioBox == "Automóvel" ? "checked" : "") />
+                    <span>Automóvel</span>
+
+                    <input type="radio" name="vehicle" @(radioBox == "Motociclo" ? "checked" : "") />
+                    <span>Motociclo</span>
+                </div>
+            }
+
+            <div class="row">
+                <input name="license1" type="text" maxlength="2" /> -
+                <input name="license2" type="text" maxlength="2" /> -
+                <input name="license3" type="text" maxlength="2" />
+
+                <button type="submit">@submitButtonText</button>
+            </div>
+        </form>
+        <div class="row-links">
+            @{
+                if (supportLinks!.Any())
+                {
+                    <ul class="list-unstyled">
+                        @foreach (var link in supportLinks!)
+                        {
+                            <li><a class="text-decoration-none" href="@link.Url" target="@link.Target">@link.Name</a></li>
+                        }
+                    </ul>
+                }
+            }
+        </div>
+
+        <div class="row-note">
+            <p>@legal</p>
+        </div>
+    </div>
+</div>

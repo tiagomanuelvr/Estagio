@@ -1,0 +1,22 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+	Layout = null;
+
+	IPublishedContent? page = null;
+
+	if(Model != null)
+	{
+		GenericPage? genericPage = Model.Ancestor<GenericPage>();
+		page = genericPage != null ? genericPage : page;
+
+		Homepage? homePage = Model.Ancestor<Homepage>();
+		page = homePage != null && page == null ? homePage : page;
+
+	}
+
+	if(page is not null)
+	{
+		Context.Response.Redirect(page.Url());
+	}
+}

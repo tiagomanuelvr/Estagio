@@ -1,0 +1,34 @@
+﻿@using Umbraco.Cms.Core.Models
+@using Umbraco.Cms.Core.Models.Blocks
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<BlockListItem>
+@{
+    var content = Model.Content;
+
+    var image = content.Value<MediaWithCrops>("image");
+    var category = content.Value<Link>("category");
+    var text = content.Value("text");
+    var date = content.Value<DateTime>("date").ToString("dd/MM/yyyy");
+    var link = content.Value<Link>("link");
+
+}
+
+<div class="blogArticle-container">
+    <div class="article-item-img">
+        @if (image != null)
+        {
+            <img src="@image!.Url()" alt="@image!.Name" style="max-width:200px;" />
+        }
+    </div>
+    <div class="article-item-text">
+        @if (category != null)
+        {
+            <a href="@category.Url">@category.Name</a>
+        }
+        @text
+        <p>@date</p>
+        @if (link != null)
+        {
+            <a href="@link.Url">@link.Name</a>
+        }
+    </div>
+</div>

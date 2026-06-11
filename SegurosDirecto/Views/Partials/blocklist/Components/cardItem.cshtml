@@ -1,0 +1,47 @@
+﻿@using Umbraco.Cms.Core.Models
+@using Umbraco.Cms.Core.Models.Blocks
+@* @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<IPublishedElement>*@
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<CardItem>
+@{
+    var image = Model.Image;
+    var category = Model.Category;
+    var title = Model.CardTitle;
+    var description = Model.Description;
+    var date = Model.Date;
+    var cardLink = Model.CardLink;
+
+    // var content = (CardItem)Model;
+
+    // var image = content.Image;
+    // var category = content.Category;
+    // var title = content.CardTitle;
+    // var description = content.Description;
+    // var date = content.Date;
+    // var cardLink = content.CardLink;
+
+    var image1 = Model.Value<MediaWithCrops>("image");
+    // image1.
+    // var category = content.Category;
+    // var title = content.CardTitle;
+    // var description = content.Description;
+    // var date = content.Date;
+    // var cardLink = content.CardLink;
+}
+
+<div class="card-section col-sm-12 col-md-6 col-lg-4 px-3 mb-4">
+    <div class="card-item">
+        <small>
+            <img class="mw-100" src="@image1!.Url()" alt="@image1!.Name" />
+        </small>
+        @if (cardLink != null)
+        {
+            <a class="text-decoration-none text-uppercase" href="@category!.Url">@category.Name</a>
+        }
+        <h2>@title</h2>
+        <div>@description</div>
+        @if (cardLink != null)
+        {
+            <a class="text-decoration-none" href="@cardLink.Url">@cardLink.Name</a>
+        }
+    </div>
+</div>

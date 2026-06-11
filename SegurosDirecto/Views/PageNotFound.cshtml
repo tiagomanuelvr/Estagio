@@ -1,0 +1,14 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.PageNotFound>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+	Layout = null;
+
+	var title = Model.Title;
+	var message = Model.Message;
+}
+
+<section>
+	<h2>@title</h2>
+    <p>@message</p>
+</section>

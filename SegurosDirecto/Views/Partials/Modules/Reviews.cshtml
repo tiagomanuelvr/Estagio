@@ -1,0 +1,98 @@
+﻿@using Umbraco.Cms.Core.Models
+@using Umbraco.Cms.Core.Models.Blocks
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Reviews>
+@{
+    var title = Model.Title;
+    var description = Model.Description;
+    var rating = Model.Rating;
+    var bannerRating = Model.BannerRate;
+    var bannerAverage = Model.BannerAverage;
+    var bannerLogo = Model.BannerLogo;
+
+    var reviewsList = Model.Item;
+}
+
+<div class="reviewsSection">
+    <div class="center py-4">
+        <div class="col-sm-12 col-md-10 col-lg-7 m-auto text-center">
+            <h2 class="fw-semibold mb-4">@title</h2>
+            @description
+        </div>
+        <div class="row col-lg-9 px-lg-5 m-auto py-3 align-items-center">
+            <div class="reviews-global col-sm-12 col-md-3 text-center">
+                <p>
+                    @for (var i = 0; i < rating; i++)
+                    {
+                       @*  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="yellow" class="bi bi-star" viewBox="0 0 16 16">
+                            <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z" />
+                        </svg> *@
+                        <i class="bi bi-star-fill" style="color:yellow"></i>
+                    }
+                </p>
+    
+                <img class="w-50" src="@bannerLogo?.MediaUrl()" />
+
+            </div>
+            <div class="reviews-item col-sm-12 col-md-9 shadow p-3 mb-5 bg-body-tertiary">
+                @if (reviewsList != null)
+                {
+                    @* foreach (var review in reviewsList)
+                    {
+                        @await Html.PartialAsync("blockList/Components/reviewItem", review)
+                    } *@
+
+                    <div id="carouselExampleIndicators2" class="carousel slide carousel-dark" data-bs-touch="true">
+                        <div class="carousel-indicators mt-5">
+                            <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="0" class="active rounded-circle reviews-button" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="1" aria-label="Slide 2" class="reviews-button rounded-circle"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="2" aria-label="Slide 3" class="reviews-button rounded-circle"></button>
+                        </div>
+                        
+                        <div class="carousel-inner">
+                            @{
+                                var slideIndex = 0;
+                            }
+                            @foreach (var review in reviewsList)
+                            {
+                                var content = review.Content as ReviewItem;
+
+                                var stars = (int?) content!.Value("stars");
+                                var publishDate = content!.Value<DateTime>("publishDate").ToString("dd/MM/yyyy");
+                                var comment = content!.Value("comment");
+                                var clientName = content!.Value("clientName");
+                                var purchaseDate = content!.Value<DateTime>("purchaseDate").ToString("dd/MM/yyyy");
+                                
+                                var active = (slideIndex == 0) ? "active" : "";
+
+                                <div class="carousel-item @active p-3" style="min-height:266px">
+                                    <div class="row mb-4 mx-3">
+                                        <div class="text-start col">
+                                            @for (var i = 0; i < stars; i++)
+                                            {
+                                                <i class="bi bi-star-fill" style="color:yellow"></i>
+                                            }
+                                        </div>
+                                        <div class="text-end col">Publicado a @publishDate</div>
+                                    </div>
+                                    
+                                    <div class="px-5">@comment</div>
+                                    <p class="mb-5 px-5 position-absolute bottom-0"><strong>@clientName</strong> pela experiência de compra a @purchaseDate</p>
+                                </div>
+     
+                                slideIndex++;
+                            }
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
